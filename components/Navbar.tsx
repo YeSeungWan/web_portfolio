@@ -22,7 +22,9 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* 로고 영역 */}
-        <div className="text-green-400 font-mono font-bold text-xl">FirmWare Engineer</div>
+        <div className="hidden md:block text-green-400 font-mono font-bold text-xl">
+          FirmWare Engineer
+        </div>
         
         {/* 메뉴 영역 */}
         <div className="flex gap-6 font-mono text-sm text-zinc-400">
