@@ -59,7 +59,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   return (
     <div className="fixed bottom-6 right-6 z-50 w-[360px] sm:w-[400px] border border-zinc-800 bg-zinc-950/95 shadow-2xl rounded-lg font-mono text-zinc-300 overflow-hidden">
       <div className="bg-zinc-900 px-4 py-3 border-b border-zinc-800 flex justify-between items-center select-none">
-        <span className="text-xs font-bold text-green-400">// New Message (Contact)</span>
+        <span className="text-xs font-bold text-green-400">New Message (Contact)</span>
         <button onClick={onClose} className="text-zinc-500 hover:text-white text-sm transition-colors p-1">✕</button>
       </div>
 
