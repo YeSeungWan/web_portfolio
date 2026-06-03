@@ -13,17 +13,17 @@ export default function Projects() {
     },
     {
       title: "My Portfolio Embedded - Hardware Independent Architect",
-      slug : "Block",
+      // slug : "Block",
       category: "architecture",
-      description: "추상화 기법을 적용한 상용 MCU 간 이식성이 뛰어난 펌웨어 아키텍처 설계에 대한 내용입니다. - 희망 퇴직 이후 정리 예정(6/30 ~)",
+      description: "추상화 기법을 적용한 상용 MCU 간 이식성이 뛰어난 펌웨어 아키텍처 설계에 대한 내용입니다.",
       tags: ["Cortex-M0", "C", "HAL_LIB"],
       link: null
     },
     {
       title: "My Portfolio Embedded - OTA",
-      slug: "Block",
+      // slug: "Block",
       category: "Cortex-M0 - OTA Architect",
-      description: "Cortex-M0 MCU 환경에서 OTA 개발에 대한 내용 입니다. - 희망 퇴직 이후 정리 예정(6/30 ~)",
+      description: "Cortex-M0 MCU 환경에서 OTA 개발에 대한 내용 입니다.",
       tags: ["Cortex-M0", "Memory Map", "FSM", "Fail Safety"],
       link: null
     }
