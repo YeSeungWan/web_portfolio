@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const EXPERIENCE_DATA = [
   {
-    year: "2026 ~ 2026.06.30(희망퇴직 예정)",
+    year: "2026 ~ 현재",
     role: "다중 통신 및 MindMotion/TI MCU 기반 제품 개발 · PL",
     category: "Embedded Firmware Architecture / PL",
     techStack: ["MindMotion", "TI MCU", "Cortex-M", "OTA Protocol", "Failsafe"],
@@ -74,7 +74,7 @@ export default function Experience() {
           <div className="mt-4 text-sm text-zinc-500 flex items-center gap-x-3 font-mono">
             <span>제일 일렉트릭</span>
             <span>/</span>
-            <span>2023.12 ~ 현재</span>
+            <span>2023.12 ~ 2026.06(희망퇴직 예정)</span>
           </div>
         </div>
 
