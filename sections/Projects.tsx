@@ -1,10 +1,23 @@
 'use client';
 
+
+interface ProjectItem {
+  title: string;
+  category?: string;
+  description: string;
+  tags?: string[];
+  link?: string | null;
+  slug?: string;
+  imgEnvKey?: string;
+  challenge?: string;
+}
+
+
 export default function Projects() {
   const MY_PORTFOLIO_FRONT_ADDR = process.env.NEXT_PUBLIC_MY_PORTFOLIO_FRONT_ADDR ?? "";
   const MY_PORTFOLIO_BACK_ADDR = process.env.NEXT_PUBLIC_MY_PORTFOLIO_BACK_ADDR ?? "";
 
-  const projects = [
+const projects: ProjectItem[] = [
     {
       title: "My Portfolio Web - Front-End",
       category: "Next.js + Synology NAS (Docker)",
@@ -61,7 +74,7 @@ export default function Projects() {
             <div>
               {/* 태그 묶음 */}
               <div className="flex flex-wrap gap-1.5 mb-4">
-                {proj.tags.map((tag, idx) => (
+                {proj.tags?.map((tag, idx) => (
                   <span key={idx} className="font-mono text-[11px] text-zinc-500 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-850">
                     {tag}
                   </span>
