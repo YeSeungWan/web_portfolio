@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { ConfigProvider } from '@/lib/configContext';
 
 export const metadata: Metadata = {
   title: "Firmware Dev Portfolio",
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko" className="scroll-smooth">
       <body className="bg-zinc-950 text-white antialiased">
         <Navbar />
-        {children}
+        <ConfigProvider>{children}</ConfigProvider>
       </body>
     </html>
   );

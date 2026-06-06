@@ -3,8 +3,6 @@
 
 import { useState } from 'react';
 
-const COMPANY_NAME = process.env.NEXT_PUBLIC_CURRENT_COMPANY || "현재 재직 중인 회사";
-
 const EXPERIENCE_DATA = [
   {
     year: "2026 ~ 현재",
@@ -74,7 +72,7 @@ export default function Experience() {
             [02. Work Experience]
           </h2>
           <div className="mt-4 text-sm text-zinc-500 flex items-center gap-x-3 font-mono">
-            <span>{COMPANY_NAME}</span>
+            <span>제일 일렉트릭</span>
             <span>/</span>
             <span>2023.12 ~ 현재</span>
           </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useConfig } from '@/lib/configContext';
 
 interface ProjectItem {
   title: string;
@@ -15,20 +16,22 @@ interface ProjectItem {
 
 export default function Projects() {
 
+  const { PORTPORT_FRONT_SRC_URL, PORTPORT_BACK_SRC_URL } = useConfig();
+
   const projects: ProjectItem[] = [
     {
       title: "My Portfolio Web - Front-End",
       category: "Next.js + Synology NAS (Docker)",
       description: "시놀로지 NAS의 Container Manager 환경을 활용하여 가상화 컨테이너 기반으로 독립 구동 및 배포한 포트폴리오 웹사이트의 프론트엔드입니다.",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Container Manager", "Synology NAS", "JIRA"],
-      link: process.env.NEXT_PUBLIC_MY_PORTFOLIO_FRONT_ADDR 
+      link: PORTPORT_FRONT_SRC_URL 
     },
     {
       title: "My Portfolio Web - Back-End",
       category: "Node.js (Express) + PostgreSQL",
       description: "시놀로지 NAS 인프라 환경에서 PostgreSQL 데이터베이스를 연동하고, Cloudflare를 통해 도메인 및 보안 네트워크 인터페이스를 구축한 RESTful API 서버입니다.",
       tags: ["Node.js", "Express.js", "PostgreSQL", "Cloudflare", "Container Manager", "Synology NAS", "JIRA"],
-      link: process.env.NEXT_PUBLIC_MY_PORTFOLIO_BACK_ADD 
+      link: PORTPORT_BACK_SRC_URL
     },
     {
       title: "My Portfolio Embedded - Hardware Independent Architect",

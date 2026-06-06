@@ -1,7 +1,18 @@
 // sections/About.tsx
+'use client';
 import Image from 'next/image';
+import { useConfig } from '@/lib/configContext';
 
 export default function About() {
+  const config = useConfig();
+
+  // 1. 로딩 처리 (데이터가 아직 오지 않았을 때 렌더링 방지)
+  if (!config) {
+    return <div className="py-20 text-center text-zinc-500 font-mono">Loading...</div>;
+  }
+
+  // 2. 데이터 추출
+  const { PROFILE_IMAGE } = config;
 
   const aboutSections = [
     {
@@ -18,7 +29,6 @@ export default function About() {
     }
   ];
 
-  // 하단 스킬 박스 데이터
   const skills = ["Embedded C/C++", "python", ".NET", "Cortex-M0", "Bare-Metal", "OTA", "Visual Stuio/Code", "Eclipse", "IAR", "CCS", "STM32 CUBE", "Hardware Debugging", "Git", "JIRA"];
 
   return (
@@ -43,12 +53,12 @@ export default function About() {
           </div>
         </div>
 
-        {/* 2. 우측: 사진 + 인적사항 (좌측과 정렬됨) */}
+        {/* 2. 우측: 사진 + 인적사항 */}
         <div className="flex flex-col items-center gap-4 shrink-0 mx-auto md:mx-0 w-48 md:w-56 mt-12">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
             <div className="absolute inset-0 bg-green-500/10 rounded-full blur-xl" />
             <Image 
-              src={process.env.NEXT_PUBLIC_MY_PROFILE_IMAGE ?? ""} 
+              src={PROFILE_IMAGE} 
               alt="Profile Picture"
               fill
               className="object-cover rounded-full border-2 border-zinc-800 grayscale hover:grayscale-0 transition-all duration-500"
@@ -60,10 +70,9 @@ export default function About() {
             <p className="text-[#00bc41] font-mono text-sm">3년차 Firmware Engineer</p>
           </div>
         </div>
-
       </div>
 
-      {/* 3. 하단: 스킬 프레임 박스 (프로젝트 카드 스타일) */}
+      {/* 3. 하단: 스킬 프레임 박스 */}
       <div className="mt-16 bg-[#0c0c0c] border border-zinc-800 rounded-xl p-8">
         <h3 className="text-[#00bc41] font-mono font-bold mb-6"> Tech Skills</h3>
         <div className="flex flex-wrap gap-3">
