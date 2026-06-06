@@ -7,8 +7,6 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [formData, setFormData] = useState({ sender_name: '', sender_email: '', message: '' });
   const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; msg: string }>({
@@ -33,6 +31,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setStatus({ type: 'loading', msg: '보내는 중...' });
 
     try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      
       const response = await fetch(`${API_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -57,6 +57,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   return (
+    // ... 나머지 UI 코드는 동일 ...
     <div className="fixed bottom-6 right-6 z-50 w-[360px] sm:w-[400px] border border-zinc-800 bg-zinc-950/95 shadow-2xl rounded-lg font-mono text-zinc-300 overflow-hidden">
       <div className="bg-zinc-900 px-4 py-3 border-b border-zinc-800 flex justify-between items-center select-none">
         <span className="text-xs font-bold text-green-400">New Message (Contact)</span>
