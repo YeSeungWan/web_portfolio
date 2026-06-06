@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useConfig } from '@/lib/configContext';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setStatus({ type: 'loading', msg: '보내는 중...' });
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      const { API_URL } = useConfig();
       
       const response = await fetch(`${API_URL}`, {
         method: 'POST',
