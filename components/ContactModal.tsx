@@ -9,11 +9,13 @@ interface ContactModalProps {
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const { API_URL } = useConfig();
   const [formData, setFormData] = useState({ sender_name: '', sender_email: '', message: '' });
   const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; msg: string }>({
     type: 'idle',
     msg: '',
   });
+
 
   if (!isOpen) return null;
 
@@ -32,8 +34,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setStatus({ type: 'loading', msg: '보내는 중...' });
 
     try {
-      const { API_URL } = useConfig();
-      
       const response = await fetch(`${API_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
