@@ -72,17 +72,20 @@ export default function About() {
         </div>
       </div>
 
-      {/* 3. 하단: 스킬 프레임 박스 */}
-      <div className="mt-16 bg-[#0c0c0c] border border-zinc-800 rounded-xl p-8">
-        <h3 className="text-[#00bc41] font-mono font-bold mb-6"> Tech Skills</h3>
-        <div className="flex flex-wrap gap-3">
-          {skills.map((skill, idx) => (
-            <span key={idx} className="px-4 py-2 border border-zinc-700 rounded-lg text-sm text-zinc-300 hover:border-green-500/50 hover:text-white transition-all cursor-default">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
+{/* 3. 하단: 스킬 프레임 박스 */}
+<div className="mt-12 md:mt-16 bg-[#0c0c0c] border border-zinc-800 rounded-xl p-5 md:p-8">
+  <h3 className="text-[#00bc41] font-mono font-bold mb-4 md:mb-6 text-sm md:text-base"> Tech Skills</h3>
+  <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+    {skills.map((skill, idx) => (
+      <span 
+        key={idx} 
+        className="px-3 py-2 sm:px-4 sm:py-2 border border-zinc-700 rounded-md sm:rounded-lg text-xs sm:text-sm text-zinc-300 text-center sm:text-left hover:border-green-500/50 hover:text-white transition-all cursor-default block sm:inline-block"
+      >
+        {skill}
+      </span>
+    ))}
+  </div>
+</div>
     </section>
   );
 }
