@@ -61,82 +61,87 @@ export default function Experience() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="experience" className="py-16 md:py-20 font-sans border-b border-zinc-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        
-        <div className="mb-8 md:mb-12">
-          <h2 className="text-xl md:text-2xl font-bold tracking-tight text-green-400 border-l-4 border-green-500 pl-3 md:pl-4">
-            [02. Work Experience]
-          </h2>
-          <div className="mt-3 md:mt-4 text-xs md:text-sm text-zinc-500 flex flex-wrap items-center gap-2 font-mono">
-            <span>제일 일렉트릭</span>
-            <span className="hidden sm:inline">/</span>
-            <span className="text-zinc-600 sm:text-zinc-500">2023.12 ~ 2026.06 (희망퇴직 예정)</span>
-          </div>
+    /* 💡 [정렬 싱크 매칭] max-w-6xl mx-auto px-4 md:px-0 레이아웃을 완전히 통일하여 다른 섹션과 좌우 정렬을 칼같이 일치시킵니다. */
+    <section id="experience" className="py-16 md:py-20 font-sans border-b border-zinc-900 max-w-6xl mx-auto px-4 md:px-0">
+      
+      {/* 타이틀 영역 */}
+      <div className="mb-8 md:mb-12">
+        <h2 className="font-mono text-2xl font-bold text-green-400">
+          [02. Work Experience]
+        </h2>
+        <div className="mt-3 md:mt-4 text-xs md:text-sm text-zinc-500 flex flex-wrap items-center gap-2 font-mono">
+          <span>제일 일렉트릭</span>
+          <span className="hidden sm:inline">/</span>
+          <span className="text-zinc-600 sm:text-zinc-500">2023.12 ~ 2026.06 (희망퇴직 예정)</span>
         </div>
+      </div>
 
-        <div className="space-y-4 md:space-y-6">
-          {EXPERIENCE_DATA.map((exp, idx) => (
-            <div key={idx} className="border border-zinc-800 rounded-xl bg-zinc-950/30 overflow-hidden hover:border-zinc-700 transition-colors">
+      {/* 카드 리스트 영역 */}
+      <div className="space-y-4 md:space-y-6">
+        {EXPERIENCE_DATA.map((exp, idx) => (
+          <div key={idx} className="border border-zinc-800 rounded-xl bg-zinc-950/30 overflow-hidden hover:border-zinc-700 transition-colors">
+            
+            <button
+              onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+              className="w-full text-left p-5 md:p-8 flex items-start justify-between gap-4 group bg-zinc-900/20 cursor-pointer"
+            >
+              <div className="space-y-1 md:space-y-2 flex-1 min-w-0">
+                <div className="text-green-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase truncate">
+                  {exp.category}
+                </div>
+                <div className="text-sm md:text-xl font-bold text-white group-hover:text-green-400 transition-colors break-words pr-2 leading-snug">
+                  {exp.year} · {exp.role.split('·')[0].trim()}
+                </div>
+                <p className="text-zinc-400 text-xs md:text-sm mt-1 leading-relaxed">{exp.summary}</p>
+              </div>
               
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full text-left p-5 md:p-8 flex items-start justify-between gap-4 group bg-zinc-900/20 cursor-pointer"
-              >
-                <div className="space-y-1.5 flex-1 min-w-0">
-                  <div className="text-green-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase truncate">{exp.category}</div>
-                  <div className="text-base md:text-xl font-bold text-white group-hover:text-green-400 transition-colors break-words pr-2">
-                    {exp.year} · {exp.role.split('·')[0].trim()}
-                  </div>
-                  <p className="text-zinc-400 text-xs md:text-sm mt-2 leading-relaxed">{exp.summary}</p>
-                </div>
-                <div className="text-zinc-500 group-hover:text-green-400 shrink-0 font-mono text-[10px] md:text-xs border border-zinc-800 group-hover:border-green-500/30 px-2 md:px-3 py-1 rounded mt-1.5 transition-colors">
-                  {openIndex === idx ? 'CLOSE' : 'OPEN'}
-                </div>
-              </button>
+              <div className="text-zinc-500 group-hover:text-green-400 shrink-0 font-mono text-[10px] md:text-xs border border-zinc-800 group-hover:border-green-500/30 px-2 md:px-3 py-1 rounded transition-colors self-center md:self-auto md:mt-6">
+                {openIndex === idx ? 'CLOSE' : 'OPEN'}
+              </div>
+            </button>
 
-              <div 
-                className={`grid transition-all duration-500 ease-in-out ${
-                  openIndex === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <div className="p-5 pt-0 md:p-8 md:pt-0 border-t border-zinc-800 bg-zinc-950/50">
-                    <div className="space-y-6 md:space-y-8">
-                      {exp.achievements.map((ach, aIdx) => {
-                        const colonIndex = ach.indexOf(':');
-                        const title = colonIndex !== -1 ? ach.substring(0, colonIndex).trim() : ach;
-                        const content = colonIndex !== -1 ? ach.substring(colonIndex + 1).trim() : null;
-                        
-                        return (
-                          <div key={aIdx} className={`border-l border-zinc-800 pl-4 md:pl-6 ${aIdx === 0 ? 'mt-6 md:mt-8' : ''}`}>
-                            <h4 className="text-green-400 font-bold text-xs md:text-sm leading-tight break-words">
-                              {title}
-                            </h4>
-                            {content && (
-                              <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mt-2 md:mt-3 break-words">
-                                {content}
-                              </p>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-1.5 md:gap-2 pt-6 mt-6 border-t border-zinc-900">
-                      {exp.techStack.map((tech, tIdx) => (
-                        <span key={tIdx} className="font-mono text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 bg-zinc-900 text-zinc-400 border border-zinc-800 rounded">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+            {/* 어치브먼트 토글 영역 */}
+            <div 
+              className={`grid transition-all duration-500 ease-in-out ${
+                openIndex === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="p-5 pt-0 md:p-8 md:pt-0 border-t border-zinc-800 bg-zinc-950/50">
+                  <div className="space-y-6 md:space-y-8">
+                    {exp.achievements.map((ach, aIdx) => {
+                      const colonIndex = ach.indexOf(':');
+                      const title = colonIndex !== -1 ? ach.substring(0, colonIndex).trim() : ach;
+                      const content = colonIndex !== -1 ? ach.substring(colonIndex + 1).trim() : null;
+                      
+                      return (
+                        <div key={aIdx} className={`border-l border-zinc-800 pl-4 md:pl-6 ${aIdx === 0 ? 'mt-6 md:mt-8' : ''}`}>
+                          <h4 className="text-green-400 font-bold text-xs md:text-sm leading-tight break-words">
+                            {title}
+                          </h4>
+                          {content && (
+                            <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mt-2 md:mt-3 break-words">
+                              {content}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1.5 md:gap-2 pt-6 mt-6 border-t border-zinc-900">
+                    {exp.techStack.map((tech, tIdx) => (
+                      <span key={tIdx} className="font-mono text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 bg-zinc-900 text-zinc-400 border border-zinc-800 rounded">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-
             </div>
-          ))}
-        </div>
+
+          </div>
+        ))}
       </div>
     </section>
   );
